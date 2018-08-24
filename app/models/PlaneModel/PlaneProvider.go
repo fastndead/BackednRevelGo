@@ -122,6 +122,6 @@ func (p *PlaneProvider)Add(itemToAdd []byte) (Plane, error) {
 	if  rowsAffected == 0 {
 		return Plane{}, fmt.Errorf("Самолёт не найден: %err", err)
 	}
-	currval,err := dbManager.GetCurVal(sql.NullString{"airport.planes_seq", true}, p.Db)
+	currval,err := dbManager.GetCurVal(sql.NullString{"airport.planes_seq", true}, p.db)
 	return p.GetById(currval)
 }
