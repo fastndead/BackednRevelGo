@@ -5,7 +5,6 @@ import (
 	"app/app/lib/responce"
 	"io/ioutil"
 	"app/app/models/PilotModel"
-	"app/app/lib/dbManager"
 )
 
 type CPilot struct {
@@ -14,16 +13,18 @@ type CPilot struct {
 }
 
 func(c *CPilot) DbInit()revel.Result{
-	db, err :=  dbManager.OpenConnection()
-	if err != nil {
+	err := c.provider.Init()
+	if err != nil{
 		return c.RenderJson(responce.Failed(err))
 	}
-	c.provider = PilotModel.PilotProvider{Db: db}
 	return nil
 }
 
 func(c *CPilot)DbClose()revel.Result{
-	dbManager.CloseConnection(c.provider.Db)
+	err := c.provider.Close()
+	if err != nil{
+		return c.RenderJson(responce.Failed(err))
+	}
 	return nil
 }
 

@@ -2,29 +2,33 @@ package dbManager
 
 import ("database/sql"
 	"github.com/revel/revel"
-	"go_modules/src/github.com/pkg/errors"
+	"fmt"
 )
 
 func OpenConnection() (*sql.DB, error){
 	constr := revel.Config.StringDefault("connectionString", "")
 	db, err := sql.Open("postgres", constr )
 	if err != nil{
-		return nil, errors.New("Ошибка при подключении к базе")
+		return nil, fmt.Errorf("Ошибка при подключении к базе: %err", err)
 	}
 	err = db.Ping()
 	if err != nil{
-		return nil, errors.New("Ошибка при проверке подключения к базе")
+		return nil, fmt.Errorf("Ошибка при проверке подключения к базе: %err", err)
 	}
 	return db, nil
 }
 
-func CloseConnection(db *sql.DB){
-	db.Close()
+func CloseConnection(db *sql.DB)error{
+	err := db.Close()
+	if err != nil{
+		return err
+	}
+	return nil
 }
 
-func GetCurVal(seq string, db *sql.Tx)(int, error){
-	sql := "SELECT last_value FROM "+seq+";"
-	rows, err := db.Query(sql)
+func GetCurVal(seq sql.NullString, db *sql.DB)(int, error){
+	request := "SELECT last_value FROM " + seq.String
+	rows, err := db.Query(request)
 	if err != nil{
 		return -1, err
 	}

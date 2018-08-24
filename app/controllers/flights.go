@@ -5,8 +5,6 @@ import (
 	"io/ioutil"
 	"github.com/revel/revel"
 	"app/app/lib/responce"
-	"app/app/lib/dbManager"
-	"fmt"
 )
 
 
@@ -17,22 +15,23 @@ type CFlight struct {
 }
 
 func(c *CFlight) DbInit()revel.Result{
-	db, err :=  dbManager.OpenConnection()
-	if err != nil {
+	err := c.provider.Init()
+	if err != nil{
 		return c.RenderJson(responce.Failed(err))
 	}
-	c.provider = FlightModel.FlightProvider{Db: db}
 	return nil
 }
 
 func(c *CFlight)DbClose()revel.Result{
-	dbManager.CloseConnection(c.provider.Db)
+	err := c.provider.Close()
+	if err != nil{
+		return c.RenderJson(responce.Failed(err))
+	}
 	return nil
 }
 
 
 func (c *CFlight) GetAll() revel.Result {
-	fmt.Println(c.provider.Db)
 	returnedValue, err := c.provider.GetAll()
 	if err != nil{
 		return c.RenderJson(responce.Failed(err))

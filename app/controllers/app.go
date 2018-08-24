@@ -10,7 +10,7 @@ type App struct {
 }
 
 func (c App) Index() revel.Result {
-	return c.RenderText("fine")
+	return c.Render()
 }
 
 func init() {

@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"app/app/lib/responce"
 	"app/app/models/PlaneModel"
-	"app/app/lib/dbManager"
 )
 
 type CPlane struct {
@@ -14,16 +13,18 @@ type CPlane struct {
 }
 
 func(c *CPlane) DbInit()revel.Result{
-	db, err :=  dbManager.OpenConnection()
-	if err != nil {
+	err := c.provider.Init()
+	if err != nil{
 		return c.RenderJson(responce.Failed(err))
 	}
-	c.provider = PlaneModel.PlaneProvider{Db: db}
 	return nil
 }
 
 func(c *CPlane)DbClose()revel.Result{
-	dbManager.CloseConnection(c.provider.Db)
+	err := c.provider.Close()
+	if err != nil{
+		return c.RenderJson(responce.Failed(err))
+	}
 	return nil
 }
 
