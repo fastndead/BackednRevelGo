@@ -3,62 +3,111 @@ package PilotModel
 import (
 	"encoding/json"
 	"errors"
+	"database/sql"
+	"strconv"
+	"fmt"
 )
 
-var pilotList []Pilot = []Pilot{{1, "firstPilot", "firstPilot"},
-	{2, "secondPilot", "secondPilot"},
-	{3, "thirdPilot", "thirdPilot"}, 
-	{4, "fourthPilot", "fourthPilot"}, 
-	{5, "fifthPilot", "fifthPilot"}}
-
-func GetAll() ([]Pilot, error) {
-	if len(pilotList) > 0{
-		return pilotList, nil
-	}
-	return pilotList, errors.New("Список пилотов пуст")
+type PilotProvider struct{
+	Db *sql.DB
 }
 
-func GetById(index int) (Pilot, error) {
-	for id := range pilotList {
-		if pilotList[id].Id == index {
-			return pilotList[id], nil
+func (p *PilotProvider)GetAll() ([]Pilot, error) {
+	sql := "SELECT c_id, c_first_name, c_last_name FROM airport.pilots"
+	rows, err := p.Db.Query(sql)
+	if err != nil{
+		return nil, err
+	}
+	defer rows.Close()
+	var PlaneList []Pilot
+	for rows.Next(){
+		var id int
+		var firstName, lastName string
+
+		if err := rows.Scan(&id, &firstName, &lastName); err != nil{
+			return nil, err
 		}
+
+		PlaneList = append(PlaneList, Pilot{id, firstName, lastName})
 	}
-	return Pilot{},errors.New("Пилот не найден")
+	return PlaneList, nil
 }
 
-func Delete(index int) ([]Pilot, error) {
-	for id := range pilotList {
-		if pilotList[id].Id == index {
-			pilotList = append(pilotList[:id], pilotList[id+1:]...)
-			return pilotList, nil
+func (p *PilotProvider)GetById(index int) (Pilot, error) {
+	sql := "SELECT c_id, c_first_name, c_last_name FROM airport.pilots WHERE c_id = " + strconv.Itoa(index)
+	rows, err := p.Db.Query(sql)
+	if err != nil{
+		return Pilot{}, err
+	}
+	defer rows.Close()
+	for rows.Next(){
+		var id int
+		var firstName, lastName string
+
+		if err := rows.Scan(&id, &firstName, &lastName); err != nil{
+			return Pilot{}, err
 		}
+		return Pilot{id, firstName, lastName}, nil
 	}
-	return pilotList, errors.New("Пилот не найден")
+	return Pilot{}, errors.New("Пилот не найден")
 }
 
-func Edit(index int, itemToAdd []byte) ([]Pilot, error){
+func (p *PilotProvider)Delete(index int) ([]Pilot, error) {
+	sql := "DELETE FROM airport.pilots CASCADE WHERE c_id = " + strconv.Itoa(index)
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, errors.New("Данный пилот участвует в рейсе, его нельзя удалить")
+	}
+	rowsAffected, err := result.RowsAffected()
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Рейс не найден")
+	}
+	return p.GetAll()
+}
+
+func (p *PilotProvider)Edit(index int, itemToAdd []byte) ([]Pilot, error){
 	temp := &Pilot{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return pilotList, errors.New("Неправилные данные пилота")
+		return nil, errors.New("Неправилные данные пилота")
 	}
-	for id := range pilotList {
-		if pilotList[id].Id == index {
-			pilotList[id].FirstName = temp.FirstName
-			pilotList[id].LastName = temp.LastName
-			return pilotList, nil
-		}
+	sql := "UPDATE airport.pilots SET c_first_name = '" + temp.FirstName + "', c_last_name = '" + temp.LastName + "' WHERE pilots.c_id = "+ strconv.Itoa(index)
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, err
 	}
-	return pilotList, errors.New("Не найден индекс")
+	rowsAffected, err := result.RowsAffected()
+	fmt.Println(rowsAffected)
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Пилот не найден")
+	}
+	return p.GetAll()
 }
 
-func Add(itemToAdd []byte) ([]Pilot, error) {
+func (p *PilotProvider)Add(itemToAdd []byte) ([]Pilot, error) {
 	temp := &Pilot{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return pilotList, errors.New("Неправильные данные пилота")
+		return nil, errors.New("Неправильные данные пилота")
 	}
-	pilotList = append(pilotList, *temp)
-	return pilotList, nil
+	sql := "INSERT INTO airport.pilots(c_id, c_first_name, c_last_name) VALUES (nextval('airport.planes_seq'),'" + temp.FirstName + "', '" + temp.LastName + "' )"
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, err
+	}
+	rowsAffected, err := result.RowsAffected()
+	fmt.Println(rowsAffected)
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Пилот не найден")
+	}
+	return p.GetAll()
 }

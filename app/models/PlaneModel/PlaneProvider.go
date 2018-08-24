@@ -3,61 +3,111 @@ package PlaneModel
 import (
 	"encoding/json"
 	"errors"
+	"database/sql"
+	"strconv"
+	"fmt"
 )
 
-var planeList []Plane = []Plane{{1, "firstPlane"},
-	{2, "secondPlane"},
-	{3, "thirdPlane"},
-	{4, "fourthPlane"},
-	{5, "fifthPlane"}}
-
-func GetAll() ([]Plane, error) {
-	if len(planeList) > 0{
-		return planeList, nil
-	}
-	return planeList, errors.New("Список самолётов пуст")
+type PlaneProvider struct{
+	Db *sql.DB
 }
 
-func GetById(index int) (Plane, error) {
-	for id := range planeList {
-		if planeList[id].Id == index {
-			return planeList[id], nil
+func (p *PlaneProvider)GetAll() ([]Plane, error) {
+	sql := "SELECT c_id, c_name FROM airport.planes"
+	rows, err := p.Db.Query(sql)
+	if err != nil{
+		return nil, err
+	}
+	defer rows.Close()
+	var PlaneList []Plane
+	for rows.Next(){
+		var id int
+		var planeName string
+
+		if err := rows.Scan(&id, &planeName); err != nil{
+			return nil, err
 		}
+
+		PlaneList = append(PlaneList, Plane{id, planeName})
 	}
-	return Plane{},errors.New("Самолёт не найден")
+	return PlaneList, nil
 }
 
-func Delete(index int) ([]Plane, error) {
-	for id := range planeList {
-		if planeList[id].Id == index {
-			planeList = append(planeList[:id], planeList[id+1:]...)
-			return planeList, nil
+func (p *PlaneProvider)GetById(index int) (Plane, error) {
+	sql := "SELECT c_id, c_name FROM airport.planes WHERE c_id = " + strconv.Itoa(index)
+	rows, err := p.Db.Query(sql)
+	if err != nil{
+		return Plane{}, err
+	}
+	defer rows.Close()
+	for rows.Next(){
+		var id int
+		var planeName string
+
+		if err := rows.Scan(&id, &planeName); err != nil{
+			return Plane{}, err
 		}
+		return Plane{id, planeName}, nil
 	}
-	return planeList, errors.New("Самолёт не найден")
+	return Plane{}, errors.New("Самолёт не найден")
 }
 
-func Edit(index int, itemToAdd []byte) ([]Plane, error){
+func (p *PlaneProvider)Delete(index int) ([]Plane, error) {
+	sql := "DELETE FROM airport.planes CASCADE WHERE c_id = " + strconv.Itoa(index)
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, errors.New("Данный самолёт участвует в рейсе, его нельзя удалить")
+	}
+	rowsAffected, err := result.RowsAffected()
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Самолёт не найден")
+	}
+	return p.GetAll()
+}
+
+func (p *PlaneProvider)Edit(index int, itemToAdd []byte) ([]Plane, error){
 	temp := &Plane{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return planeList, errors.New("Неправилные данные самолёта")
+		return nil, errors.New("Неправилные данные самолёта")
 	}
-	for id := range planeList {
-		if planeList[id].Id == index {
-			planeList[id].Name = temp.Name
-			return planeList, nil
-		}
+	sql := "UPDATE airport.planes SET c_name = '" + temp.Name + "' WHERE planes.c_id = "+ strconv.Itoa(index)
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, err
 	}
-	return planeList, errors.New("Не найден индекс")
+	rowsAffected, err := result.RowsAffected()
+	fmt.Println(rowsAffected)
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Самолёт не найден")
+	}
+	return p.GetAll()
 }
 
-func Add(itemToAdd []byte) ([]Plane, error) {
+func (p *PlaneProvider)Add(itemToAdd []byte) ([]Plane, error) {
 	temp := &Plane{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return planeList, errors.New("Неправильные данные самолёта")
+		return nil, errors.New("Неправильные данные самолёта")
 	}
-	planeList = append(planeList, *temp)
-	return planeList, nil
+	sql := "INSERT INTO airport.planes(c_id, c_name) VALUES (nextval('airport.planes_seq'),'" + temp.Name + "' )"
+	result, err := p.Db.Exec(sql)
+	if err != nil{
+		return nil, err
+	}
+	rowsAffected, err := result.RowsAffected()
+	fmt.Println(rowsAffected)
+	if err != nil{
+		return nil, err
+	}
+	if  rowsAffected == 0 {
+		return nil, errors.New("Самолёт не найден")
+	}
+	return p.GetAll()
 }

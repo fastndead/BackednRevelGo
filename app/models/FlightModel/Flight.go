@@ -1,9 +1,9 @@
 package FlightModel
 
 type Flight struct {
-	Id             int
-	Plane          string
-	Pilot          string
-	ArrivalPoint   string
-	DeparturePoint string
+	Id             	int
+	IdPlane			int
+	IdPilot			[]int
+	ArrivalPoint   	string
+	DeparturePoint 	string
 }
