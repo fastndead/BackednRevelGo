@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d09b35f-2457-408f-a1eb-99faccebfab6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/flights.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/flights.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/pilot.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/pilot.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/planes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/planes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/FlightModel/Flight.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/FlightModel/Flight.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/PilotModel/PilotProvider.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/PilotModel/PilotProvider.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/PlaneModel/PlaneProvider.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/PlaneModel/PlaneProvider.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/app.conf" afterDir="false" />
-    </list>
+    <list default="true" id="4d09b35f-2457-408f-a1eb-99faccebfab6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -147,8 +135,8 @@
       <file leaf-file-name="PilotProvider.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/PilotModel/PilotProvider.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-816">
-              <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+            <state relative-caret-position="70">
+              <caret line="77" column="33" lean-forward="true" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -236,7 +224,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="697" />
@@ -392,9 +380,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49087894" visible="true" weight="0.2118003" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49087894" visible="true" weight="0.2118003" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32843137" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.1442786" />
       <window_info anchor="right" id="Database" order="0" weight="0.3161876" />
@@ -402,7 +389,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.3267974" />
       <window_info id="Structure" order="2" sideWeight="0.50912106" side_tool="true" weight="0.39246467" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.17810458" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.753268" />
       <window_info id="Favorites" order="0" side_tool="true" weight="0.32980332" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -775,8 +762,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/PilotModel/PilotProvider.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="70">
+          <caret line="77" column="33" lean-forward="true" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
         </state>
       </provider>
     </entry>
