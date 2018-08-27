@@ -151,12 +151,12 @@ func edit(db *sql.DB,index int, itemToAdd []byte)(error){
 	return nil
 }
 
-func (f *FlightProvider)Edit(index int, itemToAdd []byte) (Flight, error){
-	err := edit(f.db, index, itemToAdd)
+func (f *FlightProvider)Edit(id int, itemToAdd []byte) (Flight, error){
+	err := edit(f.db, id, itemToAdd)
 	if err != nil{
 		return Flight{}, err
 	}
-	return f.GetById(index)
+	return f.GetById(id)
 }
 
 func add(db *sql.DB, itemToAdd []byte)error{

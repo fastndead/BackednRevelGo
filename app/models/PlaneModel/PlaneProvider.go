@@ -109,7 +109,7 @@ func (p *PlaneProvider)Add(itemToAdd []byte) (Plane, error) {
 	if err != nil {
 		return Plane{}, fmt.Errorf("Неправильные данные самолёта: %err", err)
 	}
-	request := "INSERT INTO airport.planes(c_id, c_name) VALUES (nextval('airport.planes_seq'),'$1' )"
+	request := "INSERT INTO airport.planes(c_id, c_name) VALUES (nextval('airport.planes_seq'),$1 )"
 	result, err := p.db.Exec(request, temp.Name)
 	if err != nil{
 		return Plane{}, err
