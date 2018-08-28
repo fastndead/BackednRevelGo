@@ -44,11 +44,11 @@ func (f *FlightProvider)GetAll() ([]Flight, error) {
 		if err := rows.Scan(&id, &arrivalPoint, &departurePoint,&indexOfPlane, &planeNameStr); err != nil{
 			return nil, err
 		}
-		indexList, err := getPilots(f.db, id)
+		pilotList, indexList, err := getPilots(f.db, id)
 		if err != nil{
 			return nil, err
 		}
-		returnValue = append(returnValue, (Flight{Id: int(id.Int64), IdPilot: indexList, IdPlane: int(indexOfPlane.Int64), ArrivalPoint: arrivalPoint.String, DeparturePoint: departurePoint.String}))
+		returnValue = append(returnValue, (Flight{Id: int(id.Int64),PilotName:pilotList, PlaneName: planeNameStr.String,  IdPilot: indexList, IdPlane: int(indexOfPlane.Int64), ArrivalPoint: arrivalPoint.String, DeparturePoint: departurePoint.String}))
 	}
 	return returnValue, nil
 }
@@ -78,12 +78,12 @@ func (f *FlightProvider)GetById(index int) (Flight, error) {
 			return Flight{}, err
 		}
 		defer PilotRows.Close()
-		indexList, err := getPilots(f.db, id)
+		pilotList, indexList, err := getPilots(f.db, id)
 		if err != nil{
 			return Flight{}, err
 		}
 
-		returnValue = Flight{Id: int(id.Int64), IdPilot: indexList, IdPlane: int(indexOfPlane.Int64), ArrivalPoint: arrivalPoint.String, DeparturePoint: departurePoint.String}
+		returnValue = Flight{Id: int(id.Int64), PilotName:pilotList,IdPilot: indexList, IdPlane: int(indexOfPlane.Int64), ArrivalPoint: arrivalPoint.String, DeparturePoint: departurePoint.String}
 	}
 	return returnValue, nil
 }
@@ -171,7 +171,7 @@ func add(db *sql.DB, itemToAdd []byte)error{
 		return err
 	}
 	defer transactionEnd(tx, err)
-	sql1 := "INSERT INTO airport.flights(c_id, c_arrival_point, c_departure_point, c_fk_planes) VALUES (nextval('airport.flights_seq'),'$1', '$2', $3);"
+	sql1 := "INSERT INTO airport.flights(c_id, c_arrival_point, c_departure_point, c_fk_planes) VALUES (nextval('airport.flights_seq'),$1, $2, $3);"
 	_, err = tx.Exec(sql1, temp.ArrivalPoint, temp.DeparturePoint, temp.IdPlane)
 	if err != nil{
 		return fmt.Errorf("Ошибка при вставке рейса: %err", err)
@@ -219,23 +219,26 @@ func transactionEnd(tx *sql.Tx, err error){
 	}
 }
 
-func getPilots(db *sql.DB, id sql.NullInt64)([]int, error){
-	sql1 := "SELECT c_fk_pilot FROM airport.toc_flights_pilots WHERE $1 = toc_flights_pilots.c_fk_flight"
+func getPilots(db *sql.DB, id sql.NullInt64)([]string, []int, error){
+	sql1 := "SELECT c_fk_pilot, c_first_name, c_last_name FROM airport.toc_flights_pilots, airport.pilots WHERE $1 = toc_flights_pilots.c_fk_flight AND pilots.c_id = toc_flights_pilots.c_fk_pilot"
 	PilotRows, err := db.Query(sql1, id)
 	if err != nil{
 		if err == sql.ErrNoRows{
-			return nil, fmt.Errorf("Нет ни одного пилота: $1", err)
+			return nil, nil, fmt.Errorf("Нет ни одного пилота: $1", err)
 		}
-		return nil, err
+		return nil, nil, err
 	}
 	defer PilotRows.Close()
 	indexList := []int{}
+	pilotList := []string{}
 	for PilotRows.Next(){
 		var indexOfPilot sql.NullInt64
-		if err := PilotRows.Scan( &indexOfPilot); err != nil{
-			return nil, err
+		var pilotFirstname, pilotLastName sql.NullString
+		if err := PilotRows.Scan( &indexOfPilot, &pilotFirstname, &pilotLastName); err != nil{
+			return nil, nil, err
 		}
 		indexList = append(indexList, int(indexOfPilot.Int64))
+		pilotList = append(pilotList, pilotFirstname.String + " " + pilotLastName.String)
 	}
-	return indexList, nil
+	return pilotList, indexList, nil
 }

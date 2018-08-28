@@ -92,7 +92,7 @@ func (p *PlaneProvider)Edit(index int, itemToAdd []byte) (Plane, error){
 	if err != nil {
 		return Plane{}, fmt.Errorf("Неправильные данные самолёта: %err", err)
 	}
-	request := "UPDATE airport.planes SET c_name = '$1' WHERE planes.c_id = $2"
+	request := "UPDATE airport.planes SET c_name = $1 WHERE planes.c_id = $2"
 	_, err = p.db.Exec(request,temp.Name, index)
 	if err != nil{
 		if err == sql.ErrNoRows{
