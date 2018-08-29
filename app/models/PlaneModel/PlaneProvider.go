@@ -67,21 +67,21 @@ func (p *PlaneProvider)GetById(index int) (Plane, error) {
 		}
 		return Plane{int(id.Int64), planeName.String}, nil
 	}
-	return Plane{}, fmt.Errorf("Самолёт не найден: %err", err)
+	return Plane{}, fmt.Errorf("Самолёт не найден", )
 }
 
 func (p *PlaneProvider)Delete(index int) ([]Plane, error) {
 	sql := "DELETE FROM airport.planes CASCADE WHERE c_id = $1"
 	result, err := p.db.Exec(sql, index)
 	if err != nil{
-		return nil, fmt.Errorf("Данный самолёт учавствует в рейсе, его нельзя удалить: %err", err)
+		return nil, fmt.Errorf("Данный самолёт учавствует в рейсе, его нельзя удалить")
 	}
 	rowsAffected, err := result.RowsAffected()
 	if err != nil{
 		return nil, err
 	}
 	if  rowsAffected == 0 {
-		return nil, fmt.Errorf("Самолёт не найден: %err", err)
+		return nil, fmt.Errorf("Самолёт не найден" )
 	}
 	return p.GetAll()
 }
@@ -90,13 +90,13 @@ func (p *PlaneProvider)Edit(index int, itemToAdd []byte) (Plane, error){
 	temp := &Plane{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return Plane{}, fmt.Errorf("Неправильные данные самолёта: %err", err)
+		return Plane{}, fmt.Errorf("Неправильные данные самолёта")
 	}
 	request := "UPDATE airport.planes SET c_name = $1 WHERE planes.c_id = $2"
 	_, err = p.db.Exec(request,temp.Name, index)
 	if err != nil{
 		if err == sql.ErrNoRows{
-			return Plane{}, fmt.Errorf("Самолёт не найден: $1", err)
+			return Plane{}, fmt.Errorf("Самолёт не найден")
 		}
 		return Plane{}, err
 	}
@@ -107,7 +107,7 @@ func (p *PlaneProvider)Add(itemToAdd []byte) (Plane, error) {
 	temp := &Plane{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return Plane{}, fmt.Errorf("Неправильные данные самолёта: %err", err)
+		return Plane{}, fmt.Errorf("Неправильные данные самолёта")
 	}
 	request := "INSERT INTO airport.planes(c_id, c_name) VALUES (nextval('airport.planes_seq'),$1 )"
 	result, err := p.db.Exec(request, temp.Name)
@@ -120,7 +120,7 @@ func (p *PlaneProvider)Add(itemToAdd []byte) (Plane, error) {
 		return Plane{}, err
 	}
 	if  rowsAffected == 0 {
-		return Plane{}, fmt.Errorf("Самолёт не найден: %err", err)
+		return Plane{}, fmt.Errorf("Самолёт не найден")
 	}
 	currval,err := dbManager.GetCurVal(sql.NullString{"airport.planes_seq", true}, p.db)
 	return p.GetById(currval)

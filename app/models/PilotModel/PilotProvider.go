@@ -17,7 +17,7 @@ func (p *PilotProvider)Init()error{
 	var err error
 	p.db, err = dbManager.OpenConnection()
 	if err != nil{
-		return fmt.Errorf("Ошибка при подключении к базе: %err", err)
+		return fmt.Errorf("Ошибка при подключении к базе")
 	}
 	return nil
 }
@@ -67,7 +67,7 @@ func (p *PilotProvider)GetById(index int) (Pilot, error) {
 		}
 		return Pilot{int(id.Int64), firstName.String, lastName.String}, nil
 	}
-	return Pilot{}, fmt.Errorf("Пилот не найден: $1", err)
+	return Pilot{}, fmt.Errorf("Пилот не найден")
 }
 
 func (p *PilotProvider)Delete(index int) ([]Pilot, error) {
@@ -77,7 +77,7 @@ func (p *PilotProvider)Delete(index int) ([]Pilot, error) {
 		if err == sql.ErrNoRows{
 			return nil, nil
 		}
-		return nil, fmt.Errorf("Данный пилот участвует в рейсе, его нельзя удалить: $1", err)
+		return nil, fmt.Errorf("Данный пилот участвует в рейсе, его нельзя удалить")
 	}
 	return p.GetAll()
 }
@@ -86,13 +86,13 @@ func (p *PilotProvider)Edit(index int, itemToAdd []byte) ([]Pilot, error){
 	temp := &Pilot{}
 	err := json.Unmarshal(itemToAdd, temp)
 	if err != nil {
-		return nil, fmt.Errorf("Неправилные данные пилота", err)
+		return nil, fmt.Errorf("Неправилные данные пилота")
 	}
 	request := "UPDATE airport.pilots SET c_first_name = $1, c_last_name = $2 WHERE pilots.c_id = $3"
 	_, err = p.db.Exec(request, temp.FirstName, temp.LastName, index)
 	if err != nil{
 		if err == sql.ErrNoRows{
-			return nil, fmt.Errorf("Пилот не найден", err)
+			return nil, fmt.Errorf("Пилот не найден")
 		}
 		return nil, err
 	}
