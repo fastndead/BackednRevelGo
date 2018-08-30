@@ -12,7 +12,10 @@ type CPilot struct {
 	provider PilotModel.PilotProvider
 }
 
-func(c *CPilot) DbInit()revel.Result{
+func(c *CPilot)Init()revel.Result{
+	if auth := c.Request.Header.Get("Authorization"); auth == ""{
+		return c.Redirect("/")
+	}
 	err := c.provider.Init()
 	if err != nil{
 		return c.RenderJson(responce.Failed(err))

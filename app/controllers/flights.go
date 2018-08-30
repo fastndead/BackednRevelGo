@@ -10,11 +10,15 @@ import (
 
 
 type CFlight struct {
+
 	*revel.Controller
 	provider FlightModel.FlightProvider
 }
 
-func(c *CFlight) DbInit()revel.Result{
+func(c *CFlight) Init()revel.Result{
+	if auth := c.Request.Header.Get("Authorization"); auth == ""{
+		return c.Redirect("/")
+	}
 	err := c.provider.Init()
 	if err != nil{
 		return c.RenderJson(responce.Failed(err))

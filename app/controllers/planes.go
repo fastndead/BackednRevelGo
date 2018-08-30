@@ -12,7 +12,10 @@ type CPlane struct {
 	provider PlaneModel.PlaneProvider
 }
 
-func(c *CPlane) DbInit()revel.Result{
+func(c *CPlane) Init()revel.Result{
+	if auth := c.Request.Header.Get("Authorization"); auth == ""{
+		return c.Redirect("/")
+	}
 	err := c.provider.Init()
 	if err != nil{
 		return c.RenderJson(responce.Failed(err))
