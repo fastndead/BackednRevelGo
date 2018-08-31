@@ -14,7 +14,7 @@ GET     /public/*filepath                       Static.Serve("public")
 
 # Catch all
 #*       /:controller/:action                    :controller.:action
-GET     /logout                                 App.Index
+GET     /logout                                 CLogOut.LogOut
 GET		/pilots									CPilot.GetAll
 GET 	/pilots/:id 							CPilot.GetById
 PUT 	/pilots/								CPilot.Add

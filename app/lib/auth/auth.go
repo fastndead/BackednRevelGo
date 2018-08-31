@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"errors"
 	"math/rand"
+	"app/app/lib/dbManager"
+	"database/sql"
 )
 
 const algorithm = "algorithm"
@@ -19,7 +21,8 @@ const qop = "qop"
 const realm = "realm"
 const response = "response"
 const uri = "uri"
-var wanted = []string{algorithm, nonce, response,  opaque, qop, realm, uri}
+const username = "username"
+var wanted = []string{username ,algorithm, nonce, response,  opaque, qop, realm, uri}
 
 func getMD5(texts []string) string {
 	h := md5.New()
@@ -34,11 +37,9 @@ func getRandomHash()string{
 	return  hex.EncodeToString(h.Sum(nil))
 }
 
-func Auth(c *revel.Controller)revel.Result{
-	correctUsername := "admin"
-	correctPassword := "admin"
-	realm := "testrealm@host.com"
-
+func Auth(c *revel.Controller)(revel.Result, error){
+	nonceParam 	:= getRandomHash()
+	opaqueParam := getRandomHash()
 
 	if auth := c.Request.Header.Get("Authorization"); auth != "" {
 		headers := strings.Split(auth, ",")
@@ -51,37 +52,64 @@ func Auth(c *revel.Controller)revel.Result{
 			}
 		}
 
-		ha1 := getMD5([]string{correctUsername, realm, correctPassword})
-		ha2 := getMD5([]string{"GET", parts[uri] })
+		db, err := dbManager.OpenConnection()
+		if err != nil{
+			return nil, err
+		}
+		defer db.Close()
+
+		req := "SELECT c_password FROM airport.users WHERE c_username = $1"
+		rows, err := db.Query(req, parts[username])
+		if err != nil{
+			if err == sql.ErrNoRows{
+				return repeatRequest(c, nonceParam, opaqueParam)
+			}
+
+			return repeatRequest(c, nonceParam, opaqueParam)
+		}
+		defer rows.Close()
+		var correctPassword string
+		for rows.Next(){
+			if err := rows.Scan(&correctPassword); err != nil{
+				return repeatRequest(c, nonceParam, opaqueParam)
+			}
+		}
+		if strings.Trim(correctPassword," ") == ""{
+			return repeatRequest(c, nonceParam, opaqueParam)
+		}
+		fmt.Println("CORRECT PASSWORD: " + correctPassword)
+		ha1 := getMD5([]string{parts[username], parts[realm], correctPassword})
+		ha2 := getMD5([]string{c.Request.Method, parts[uri] })
 		correctResponse := getMD5([]string{ha1,parts[nonce],ha2})
 
 		fmt.Println(parts)
-		fmt.Println("NONCE: ", nonce)
 		fmt.Println("CORRECT: "+correctResponse)
 		fmt.Println("RECIVED: "+parts[response])
 
 		if correctResponse != parts[response]{
-			c.Response.Status = http.StatusUnauthorized
-			c.Response.Out.Header().Set("WWW-Authenticate", `Basic realm="revel"`)
-			return c.RenderError(errors.New("401: Not authorized"))
+			return repeatRequest(c, nonceParam, opaqueParam)
 		}
-		return nil
+		return nil, nil
 	} else {
+		return repeatRequest(c, nonceParam, opaqueParam)
 
-		c.Response.Status = http.StatusUnauthorized
-
-		responseValue := `Digest `
-		responseValue += ` realm="`		+ realm 			+`"`
-		responseValue += `, nonce="` 	+ getRandomHash()	+`" `
-		responseValue += `, opaque="`	+ getRandomHash()	+`" `
-		fmt.Println(responseValue)
-		c.Response.Out.Header().Set("WWW-Authenticate", responseValue)
-		return c.RenderError(errors.New("401: Not authorized"))
 	}
 }
 
-func LogOut(c *revel.Controller){
-
+func repeatRequest(c *revel.Controller, nonceParam string, opaqueParam string) (revel.Result,error){
 	c.Response.Status = http.StatusUnauthorized
-	c.Response.Out.Header().Set("WWW-Authenticate", "")
+
+	responseValue := `Digest `
+	responseValue += ` realm="`		+ "testrealm@host.com"	+`"`
+	responseValue += `, nonce="` 	+ nonceParam			+`" `
+	responseValue += `, opaque="`	+ opaqueParam			+`" `
+	fmt.Println(responseValue)
+	c.Response.Out.Header().Set("WWW-Authenticate", responseValue)
+	return c.RenderError(errors.New("401: Not authorized")), nil
+}
+
+func LogOut(c *revel.Controller){
+	c.Response.Status = http.StatusUnauthorized
+	c.Request.Header.Del("Authorization")
+	c.Response.Out.Header().Del("WWW-Authenticate")
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Not Authorized</title>
+    <script src="../../../public/js/codebase/webix.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../../../public/js/codebase/skins/material.css">
+    <link rel="shortcut icon" href="../../../public/img/tabicon.ico">
+</head>
+<body>
+<script>
+    webix.ready(function(){
+        webix.debug = true;
+        webix.ui({
+            view: "template",
+            template: "{{.Error}}",
+
+        })
+    });
+</script>
+</body>
+</html>
