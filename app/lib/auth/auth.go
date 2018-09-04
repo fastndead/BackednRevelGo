@@ -24,35 +24,37 @@ const uri = "uri"
 const username = "username"
 var wanted = []string{username ,algorithm, nonce, response,  opaque, qop, realm, uri}
 
-func getMD5(texts []string) string {
+func getMD5(texts []string) string {//получить контрольную сумму от массива строк в соответствии с алгоритмом дайджест
+									//аутентификации
 	h := md5.New()
-	io.WriteString(h, strings.Join(texts, ":"))
+	io.WriteString(h, strings.Join(texts, ":"))//объединение строк с разделителем ":"
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-func getRandomHash()string{
+func getRandomHash()string{//получение случайного хэша
 	h := md5.New()
 	randNumber := rand.Intn(100)
 	io.WriteString(h, string(randNumber))
 	return  hex.EncodeToString(h.Sum(nil))
 }
 
-func Auth(c *revel.Controller)(revel.Result, error){
+func Auth(c *revel.Controller)(revel.Result, error){//проверка аутентификации
 	nonceParam 	:= getRandomHash()
 	opaqueParam := getRandomHash()
 
-	if auth := c.Request.Header.Get("Authorization"); auth != "" {
+	if auth := c.Request.Header.Get("Authorization"); auth != "" {//если заголовок аутентификации не пуст
+	//проверяем пароль
 		headers := strings.Split(auth, ",")
 		parts := make(map[string]string, len(wanted))
 		for _, r := range headers {
 			for _, w := range wanted {
-				if strings.Contains(r, w) {
+				if strings.Contains(r, w) {//достаём информацию из заголовка в цикле
 					parts[w] = strings.Split(r, `"`)[1]
 				}
 			}
 		}
 
-		db, err := dbManager.OpenConnection()
+		db, err := dbManager.OpenConnection()//открытие базы данных
 		if err != nil{
 			return nil, err
 		}
@@ -69,16 +71,16 @@ func Auth(c *revel.Controller)(revel.Result, error){
 		}
 		defer rows.Close()
 		var correctPassword string
-		for rows.Next(){
+		for rows.Next(){//получение пароля из базы данных по имени пользователя
 			if err := rows.Scan(&correctPassword); err != nil{
 				return repeatRequest(c, nonceParam, opaqueParam)
 			}
 		}
-		if strings.Trim(correctPassword," ") == ""{
-			return repeatRequest(c, nonceParam, opaqueParam)
+		if strings.Trim(correctPassword," ") == ""{//проверка на пустоту пароля
+			return repeatRequest(c, nonceParam, opaqueParam)//если пароль пуст - повторяем запрос на пароль
 		}
 		fmt.Println("CORRECT PASSWORD: " + correctPassword)
-		ha1 := getMD5([]string{parts[username], parts[realm], correctPassword})
+		ha1 := getMD5([]string{parts[username], parts[realm], correctPassword})//получение хэша правильного пароля
 		ha2 := getMD5([]string{c.Request.Method, parts[uri] })
 		correctResponse := getMD5([]string{ha1,parts[nonce],ha2})
 
@@ -86,17 +88,17 @@ func Auth(c *revel.Controller)(revel.Result, error){
 		fmt.Println("CORRECT: "+correctResponse)
 		fmt.Println("RECIVED: "+parts[response])
 
-		if correctResponse != parts[response]{
-			return repeatRequest(c, nonceParam, opaqueParam)
+		if correctResponse != parts[response]{//если пароль неправилный
+			return repeatRequest(c, nonceParam, opaqueParam)//повторяе запрос на пароль
 		}
-		return nil, nil
-	} else {
+		return nil, nil//есои пароль правильный - авторизация завершена
+	} else {//если заголовок аутентификации пуст - повторяем запрос на пароль
 		return repeatRequest(c, nonceParam, opaqueParam)
 
 	}
 }
 
-func repeatRequest(c *revel.Controller, nonceParam string, opaqueParam string) (revel.Result,error){
+func repeatRequest(c *revel.Controller, nonceParam string, opaqueParam string) (revel.Result,error){//запрос аутентификации
 	c.Response.Status = http.StatusUnauthorized
 
 	responseValue := `Digest `
@@ -108,8 +110,8 @@ func repeatRequest(c *revel.Controller, nonceParam string, opaqueParam string) (
 	return c.RenderError(errors.New("401: Not authorized")), nil
 }
 
-func LogOut(c *revel.Controller){
-	c.Response.Status = http.StatusUnauthorized
-	c.Request.Header.Del("Authorization")
-	c.Response.Out.Header().Del("WWW-Authenticate")
+func LogOut(c *revel.Controller){//снятие авторизированности
+	c.Response.Status = http.StatusUnauthorized//установка статуса "не аутентифицирован"
+	c.Request.Header.Del("Authorization")//удаление заголовков авторизации
+	c.Response.Out.Header().Del("WWW-Authenticate")//
 }

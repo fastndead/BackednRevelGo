@@ -5,20 +5,20 @@ import ("database/sql"
 	"fmt"
 )
 
-func OpenConnection() (*sql.DB, error){
+func OpenConnection() (*sql.DB, error){//открытие соединения
 	constr := revel.Config.StringDefault("connectionString", "")
 	db, err := sql.Open("postgres", constr )
 	if err != nil{
 		return nil, fmt.Errorf("Ошибка при подключении к базе: %err", err)
 	}
-	err = db.Ping()
+	err = db.Ping()//проверка открытия
 	if err != nil{
 		return nil, fmt.Errorf("Ошибка при проверке подключения к базе: %err", err)
 	}
 	return db, nil
 }
 
-func CloseConnection(db *sql.DB)error{
+func CloseConnection(db *sql.DB)error{//закрытие соединения
 	err := db.Close()
 	if err != nil{
 		return err
@@ -26,7 +26,7 @@ func CloseConnection(db *sql.DB)error{
 	return nil
 }
 
-func GetCurVal(seq sql.NullString, db *sql.DB)(int, error){
+func GetCurVal(seq sql.NullString, db *sql.DB)(int, error){//получение curVal из базы данных
 	request := "SELECT last_value FROM " + seq.String
 	rows, err := db.Query(request)
 	if err != nil{

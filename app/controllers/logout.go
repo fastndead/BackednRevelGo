@@ -12,6 +12,6 @@ type CLogOut struct {
 
 
 func (c *CLogOut)LogOut() revel.Result{
-	auth.LogOut(c.Controller)
+	auth.LogOut(c.Controller)//снятие авторизированнсти
 	return c.RenderError(errors.New("401: You're not authorized"))
 }

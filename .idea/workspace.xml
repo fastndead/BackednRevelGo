@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d09b35f-2457-408f-a1eb-99faccebfab6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/logout.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/errors/401.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/flights.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/flights.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/logout.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/logout.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/pilot.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/pilot.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/planes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/planes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/lib/auth/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/auth/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/App/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/App/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/dataModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/flightModel/flightModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/pilotModel/pilotModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/pilotModel/pilotProvider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/planeModel/planeModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/Models/planeModel/planeProvider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/lib/responce/responce.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/lib/responce/responce.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/mystyle.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/viewLogic.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -138,35 +131,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="view.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5253">
-              <caret line="489" column="37" selection-start-line="489" selection-start-column="37" selection-end-line="489" selection-end-column="37" />
+            <state relative-caret-position="453">
+              <caret line="372" selection-start-line="372" selection-end-line="372" />
               <folding>
-                <marker date="1535722612603" expanded="true" signature="10606:10608" ph="..." />
+                <marker date="1536041231132" expanded="true" signature="7655:7657" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="401.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/errors/401.html">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/app.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-              <folding>
-                <element signature="e#21#113#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="636">
+              <caret line="51" column="12" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -174,29 +155,8 @@
       <file leaf-file-name="auth.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/lib/auth/auth.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-782">
-              <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
-              <folding>
-                <element signature="e#14#139#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logout.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/logout.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/App/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="7" selection-end-column="69" />
+            <state relative-caret-position="1700">
+              <caret line="112" column="60" selection-start-line="112" selection-start-column="60" selection-end-line="112" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -204,17 +164,26 @@
       <file leaf-file-name="flights.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/flights.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+            <state relative-caret-position="1207">
+              <caret line="76" column="73" selection-start-line="76" selection-start-column="73" selection-end-line="76" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlightProvider.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FlightProvider.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-748">
+              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pilot.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/pilot.go">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="45" column="9" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="45" selection-end-column="9" />
+              <caret line="73" column="72" selection-start-line="73" selection-start-column="72" selection-end-line="73" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -222,8 +191,17 @@
       <file leaf-file-name="responce.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/lib/responce/responce.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="204">
+              <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="planes.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/planes.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="73" column="72" selection-start-line="73" selection-start-column="72" selection-end-line="73" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -231,8 +209,17 @@
       <file leaf-file-name="Flight.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/FlightModel/Flight.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+            <state relative-caret-position="34">
+              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dbManager.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/lib/dbManager/dbManager.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="28" column="92" selection-start-line="28" selection-start-column="92" selection-end-line="28" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -249,7 +236,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>removepilo</find>
       <find>editFlights</find>
       <find>editflig</find>
       <find>addFlight</find>
@@ -279,6 +265,7 @@
       <find>edit</find>
       <find>editf</find>
       <find>remove</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace>pilotList</replace>
@@ -300,7 +287,6 @@
         <option value="$PROJECT_DIR$/conf/app.conf" />
         <option value="$PROJECT_DIR$/app/models/PlaneModel/Plane.go" />
         <option value="$PROJECT_DIR$/app/models/PilotModel/Pilot.go" />
-        <option value="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" />
         <option value="$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js" />
         <option value="$PROJECT_DIR$/app/models/FlightModel/Flight.go" />
         <option value="$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go" />
@@ -309,17 +295,19 @@
         <option value="$PROJECT_DIR$/app/controllers/users.go" />
         <option value="$PROJECT_DIR$/app/controllers/usersBase.go" />
         <option value="$PROJECT_DIR$/app/controllers/userBase.go" />
-        <option value="$PROJECT_DIR$/app/controllers/flights.go" />
-        <option value="$PROJECT_DIR$/app/controllers/pilot.go" />
-        <option value="$PROJECT_DIR$/app/controllers/planes.go" />
-        <option value="$PROJECT_DIR$/app/controllers/logout.go" />
         <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/app/controllers/app.go" />
         <option value="$PROJECT_DIR$/app/views/App/index.html" />
         <option value="$PROJECT_DIR$/app/views/errors/401.html" />
-        <option value="$PROJECT_DIR$/app/lib/auth/auth.go" />
         <option value="$PROJECT_DIR$/public/js/view.js" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/app/controllers/logout.go" />
+        <option value="$PROJECT_DIR$/app/lib/auth/auth.go" />
+        <option value="$PROJECT_DIR$/app/controllers/flights.go" />
+        <option value="$PROJECT_DIR$/app/controllers/pilot.go" />
+        <option value="$PROJECT_DIR$/app/controllers/planes.go" />
+        <option value="$PROJECT_DIR$/app/lib/dbManager/dbManager.go" />
+        <option value="$PROJECT_DIR$/app/lib/responce/responce.go" />
       </list>
     </option>
   </component>
@@ -335,9 +323,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="644" />
-    <option name="y" value="-14" />
-    <option name="width" value="697" />
+    <option name="x" value="-7" />
+    <option name="width" value="363" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -543,15 +530,15 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.48856208" visible="true" weight="0.23146747" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.8888889" visible="true" weight="0.22919819" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32843137" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.14379086" />
       <window_info anchor="right" id="Database" order="0" weight="0.3161876" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32843137" />
       <window_info anchor="bottom" id="Run" order="5" weight="0.3267974" />
-      <window_info id="Structure" order="2" sideWeight="0.5114379" side_tool="true" visible="true" weight="0.23146747" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.7924837" />
+      <window_info id="Structure" order="2" sideWeight="0.11111111" side_tool="true" weight="0.22919819" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.31699347" />
       <window_info id="Favorites" order="0" side_tool="true" weight="0.32980332" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -564,6 +551,28 @@
       <window_info anchor="bottom" id="Database Console" order="10" weight="0.32843137" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32843137" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.3267974" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4854369" visible="true" weight="0.23524962" />
+      <window_info id="Structure" order="2" sideWeight="0.5145631" side_tool="true" weight="0.23524962" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" weight="0.32843137" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.32843137" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.31699347" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.14379086" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32843137" />
+      <window_info anchor="bottom" id="Database Console" order="10" weight="0.32843137" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="right" id="Database" order="0" weight="0.3161876" />
+      <window_info id="Favorites" order="0" side_tool="true" weight="0.32980332" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -573,7 +582,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -584,9 +593,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/dataModel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Models/dataModel.js" />
     <entry file="file://$PROJECT_DIR$/app/models/PlaneModel/PlaneProvider.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
@@ -627,7 +634,7 @@
         <state relative-caret-position="119">
           <caret line="382" column="39" lean-forward="true" selection-start-line="382" selection-start-column="39" selection-end-line="382" selection-end-column="39" />
           <folding>
-            <marker date="1535722612603" expanded="true" signature="10606:10608" ph="..." />
+            <marker date="1536041231132" expanded="true" signature="7655:7657" ph="..." />
           </folding>
         </state>
       </provider>
@@ -637,19 +644,9 @@
         <state relative-caret-position="-255" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightModel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/pilotModel/pilotProvider.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightModel.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/Models/pilotModel/pilotProvider.js" />
     <entry file="file://$PROJECT_DIR$/conf/app.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1666">
@@ -674,15 +671,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightModel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/dataModel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/planeModel/planeProvider.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightModel.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/Models/dataModel.js" />
+    <entry file="file://$PROJECT_DIR$/public/js/Models/planeModel/planeProvider.js" />
     <entry file="file://$PROJECT_DIR$/app/models/PlaneModel/Plane.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -690,13 +681,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Models/flightModel/flightProvider.js" />
     <entry file="file://$PROJECT_DIR$/app/models/PilotModel/Pilot.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -704,9 +689,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/Models/planeModel/planeModel.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/Models/planeModel/planeModel.js" />
     <entry file="file://$PROJECT_DIR$/app/models/PilotModel/PilotProvider.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -725,27 +708,6 @@
     <entry file="file://$PROJECT_DIR$/app/routes/routes.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/planes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pilot.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="93" column="7" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -753,44 +715,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/dbManager/dbManager.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="45" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/flights.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/FlightModel/Flight.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/responce/responce.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/viewLogic.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/viewLogic.js" />
     <entry file="file://$PROJECT_DIR$/public/js/jquery-3.3.1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-19621">
@@ -804,7 +729,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/App/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="7" selection-end-column="69" />
+          <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -815,40 +740,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/logout.go">
+    <entry file="file://$PROJECT_DIR$/app/controllers/app.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+        <state relative-caret-position="391">
+          <caret line="28" column="53" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/app.go">
+    <entry file="file://$PROJECT_DIR$/app/controllers/logout.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="170">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="51" column="12" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="372" selection-start-line="372" selection-end-line="372" />
           <folding>
-            <element signature="e#21#113#0" expanded="true" />
+            <marker date="1536041231132" expanded="true" signature="7655:7657" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/auth/auth.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
-          <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
-          <folding>
-            <element signature="e#14#139#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1700">
+          <caret line="112" column="60" selection-start-line="112" selection-start-column="60" selection-end-line="112" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/view.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/flights.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5253">
-          <caret line="489" column="37" selection-start-line="489" selection-start-column="37" selection-end-line="489" selection-end-column="37" />
-          <folding>
-            <marker date="1535722612603" expanded="true" signature="10606:10608" ph="..." />
-          </folding>
+        <state relative-caret-position="1207">
+          <caret line="76" column="73" selection-start-line="76" selection-start-column="73" selection-end-line="76" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/pilot.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="73" column="72" selection-start-line="73" selection-start-column="72" selection-end-line="73" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/planes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="73" column="72" selection-start-line="73" selection-start-column="72" selection-end-line="73" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/dbManager/dbManager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="92" selection-start-line="28" selection-start-column="92" selection-end-line="28" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/responce/responce.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/FlightModel/Flight.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/FlightModel/FlightProvider.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-748">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
         </state>
       </provider>
     </entry>
